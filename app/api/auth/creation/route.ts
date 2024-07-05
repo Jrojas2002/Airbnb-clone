@@ -32,5 +32,5 @@ export async function GET() {
     });
   }
 
-  return NextResponse.redirect("https://airbnb-clone-nlyrp6eim-jayson-s-projects-1ab87ee6.vercel.app");
+  return NextResponse.redirect("https://airbnb-clone-61a8jv3e0-jayson-s-projects-1ab87ee6.vercel.app");
 }

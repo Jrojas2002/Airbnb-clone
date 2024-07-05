@@ -3,9 +3,10 @@ import { ListingCard } from "../components/ListingCard";
 import { NoItems } from "../components/NoItems";
 import prisma from "../lib/db";
 import { redirect } from "next/navigation";
-
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(userId: string) {
+  noStore();
   const data = await prisma.reservation.findMany({
     where: {
       userId: userId,
@@ -32,13 +33,15 @@ async function getData(userId: string) {
 }
 
 export default async function ReservationsRoute() {
-    const {getUser} = getKindeServerSession()
-    const user = await getUser();
-    if(!user?.id) return redirect("/")
-    const data = await getData(user.id)
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (!user?.id) return redirect("/");
+  const data = await getData(user.id);
   return (
     <section className="container mx-auto px-5 lg:px-10 mt-10">
-      <h2 className="text-3xl font-semibold tracking-tight">Your Reservations</h2>
+      <h2 className="text-3xl font-semibold tracking-tight">
+        Your Reservations
+      </h2>
 
       {data.length === 0 ? (
         <NoItems

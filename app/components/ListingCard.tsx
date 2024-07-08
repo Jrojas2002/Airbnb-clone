@@ -32,12 +32,14 @@ export function ListingCard({
   return (
     <div className="flex flex-col">
       <div className="relative h-72">
+      <Link href={`/home/${homeId}`}>
         <Image
           src={`https://isenymueetrlxuvqntxp.supabase.co/storage/v1/object/public/images/${imagePath}`}
           alt="Image of House"
           fill
           className="rounded-lg h-full object-cover"
         />
+        </Link>
 
         {userId && (
           <div className="z-10 absolute top-2 right-2">
